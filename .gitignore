@@ -12,7 +12,6 @@ out/
 
 # Gradle wrapper (keep gradlew scripts, ignore jar & cache)
 .gradle/
-gradle/wrapper/gradle-wrapper.jar
 local.properties
 
 # Keystore / signing
@@ -88,6 +87,7 @@ GoogleService-Info.plist
 # Keep these (override any broad rules above)
 # ============================================================
 !gradle/wrapper/gradle-wrapper.properties
+!gradle/wrapper/gradle-wrapper.jar
 !gradlew
 !gradlew.bat
 
