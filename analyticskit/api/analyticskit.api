@@ -1,0 +1,165 @@
+public final class com/analyticskit/AnalyticsConfig {
+	public fun <init> (Ljava/lang/String;Lcom/analyticskit/Environment;Lcom/analyticskit/BatchConfig;Lcom/analyticskit/LogLevel;Lcom/analyticskit/EventInterceptor;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/analyticskit/Environment;Lcom/analyticskit/BatchConfig;Lcom/analyticskit/LogLevel;Lcom/analyticskit/EventInterceptor;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/analyticskit/Environment;
+	public final fun component3 ()Lcom/analyticskit/BatchConfig;
+	public final fun component4 ()Lcom/analyticskit/LogLevel;
+	public final fun component5 ()Lcom/analyticskit/EventInterceptor;
+	public final fun copy (Ljava/lang/String;Lcom/analyticskit/Environment;Lcom/analyticskit/BatchConfig;Lcom/analyticskit/LogLevel;Lcom/analyticskit/EventInterceptor;)Lcom/analyticskit/AnalyticsConfig;
+	public static synthetic fun copy$default (Lcom/analyticskit/AnalyticsConfig;Ljava/lang/String;Lcom/analyticskit/Environment;Lcom/analyticskit/BatchConfig;Lcom/analyticskit/LogLevel;Lcom/analyticskit/EventInterceptor;ILjava/lang/Object;)Lcom/analyticskit/AnalyticsConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getApiKey ()Ljava/lang/String;
+	public final fun getBatching ()Lcom/analyticskit/BatchConfig;
+	public final fun getEnvironment ()Lcom/analyticskit/Environment;
+	public final fun getEventInterceptor ()Lcom/analyticskit/EventInterceptor;
+	public final fun getLogging ()Lcom/analyticskit/LogLevel;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/analyticskit/AnalyticsConfig$Builder {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun batching (Lcom/analyticskit/BatchConfig;)Lcom/analyticskit/AnalyticsConfig$Builder;
+	public final fun build ()Lcom/analyticskit/AnalyticsConfig;
+	public final fun environment (Lcom/analyticskit/Environment;)Lcom/analyticskit/AnalyticsConfig$Builder;
+	public final fun eventInterceptor (Lcom/analyticskit/EventInterceptor;)Lcom/analyticskit/AnalyticsConfig$Builder;
+	public final fun logging (Lcom/analyticskit/LogLevel;)Lcom/analyticskit/AnalyticsConfig$Builder;
+}
+
+public final class com/analyticskit/AnalyticsError : java/lang/Enum {
+	public static final field INVALID_API_KEY Lcom/analyticskit/AnalyticsError;
+	public static final field NETWORK_ERROR Lcom/analyticskit/AnalyticsError;
+	public static final field PAYLOAD_TOO_LARGE Lcom/analyticskit/AnalyticsError;
+	public static final field RATE_LIMITED Lcom/analyticskit/AnalyticsError;
+	public static final field UNKNOWN Lcom/analyticskit/AnalyticsError;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/analyticskit/AnalyticsError;
+	public static fun values ()[Lcom/analyticskit/AnalyticsError;
+}
+
+public final class com/analyticskit/AnalyticsKit {
+	public static final field Companion Lcom/analyticskit/AnalyticsKit$Companion;
+	public synthetic fun <init> (Lcom/analyticskit/AnalyticsConfig;Lcom/analyticskit/internal/IEventStore;Lcom/analyticskit/internal/IEventDispatcher;Lkotlinx/coroutines/CoroutineDispatcher;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun destroy ()V
+	public final fun flush ()V
+	public final fun flushAsync (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getInstance ()Lcom/analyticskit/AnalyticsKit;
+	public final fun getState ()Lkotlinx/coroutines/flow/StateFlow;
+	public static final fun initialize (Landroid/content/Context;Lcom/analyticskit/AnalyticsConfig;)Lcom/analyticskit/AnalyticsKit;
+	public static final fun initializeForTest$analyticskit_release (Lcom/analyticskit/AnalyticsConfig;Lcom/analyticskit/internal/IEventDispatcher;Lcom/analyticskit/internal/IEventStore;Lkotlinx/coroutines/CoroutineDispatcher;)Lcom/analyticskit/AnalyticsKit;
+	public final fun track (Lcom/analyticskit/Event;)V
+	public final fun track (Ljava/lang/String;Ljava/util/Map;)V
+	public static synthetic fun track$default (Lcom/analyticskit/AnalyticsKit;Ljava/lang/String;Ljava/util/Map;ILjava/lang/Object;)V
+}
+
+public final class com/analyticskit/AnalyticsKit$Companion {
+	public final fun getInstance ()Lcom/analyticskit/AnalyticsKit;
+	public final fun initialize (Landroid/content/Context;Lcom/analyticskit/AnalyticsConfig;)Lcom/analyticskit/AnalyticsKit;
+}
+
+public final class com/analyticskit/AnalyticsState {
+	public fun <init> (ILcom/analyticskit/DeliveryStatus;)V
+	public final fun component1 ()I
+	public final fun component2 ()Lcom/analyticskit/DeliveryStatus;
+	public final fun copy (ILcom/analyticskit/DeliveryStatus;)Lcom/analyticskit/AnalyticsState;
+	public static synthetic fun copy$default (Lcom/analyticskit/AnalyticsState;ILcom/analyticskit/DeliveryStatus;ILjava/lang/Object;)Lcom/analyticskit/AnalyticsState;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDeliveryStatus ()Lcom/analyticskit/DeliveryStatus;
+	public final fun getQueuedEvents ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/analyticskit/BatchConfig {
+	public synthetic fun <init> (IJIZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (IJIZZLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component2-UwyO8pc ()J
+	public final fun component3 ()I
+	public final fun component4 ()Z
+	public final fun component5 ()Z
+	public final fun copy-WPwdCS8 (IJIZZ)Lcom/analyticskit/BatchConfig;
+	public static synthetic fun copy-WPwdCS8$default (Lcom/analyticskit/BatchConfig;IJIZZILjava/lang/Object;)Lcom/analyticskit/BatchConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFlushInterval-UwyO8pc ()J
+	public final fun getFlushOnAppBackground ()Z
+	public final fun getMaxBatchSize ()I
+	public final fun getMaxQueueSize ()I
+	public final fun getPersistOfflineEvents ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/analyticskit/DeliveryStatus {
+}
+
+public final class com/analyticskit/DeliveryStatus$Failed : com/analyticskit/DeliveryStatus {
+	public synthetic fun <init> (Lcom/analyticskit/AnalyticsError;JLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/analyticskit/AnalyticsError;
+	public final fun component2-UwyO8pc ()J
+	public final fun copy-HG0u8IE (Lcom/analyticskit/AnalyticsError;J)Lcom/analyticskit/DeliveryStatus$Failed;
+	public static synthetic fun copy-HG0u8IE$default (Lcom/analyticskit/DeliveryStatus$Failed;Lcom/analyticskit/AnalyticsError;JILjava/lang/Object;)Lcom/analyticskit/DeliveryStatus$Failed;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Lcom/analyticskit/AnalyticsError;
+	public final fun getRetryIn-UwyO8pc ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/analyticskit/DeliveryStatus$Flushing : com/analyticskit/DeliveryStatus {
+	public fun <init> (I)V
+	public final fun component1 ()I
+	public final fun copy (I)Lcom/analyticskit/DeliveryStatus$Flushing;
+	public static synthetic fun copy$default (Lcom/analyticskit/DeliveryStatus$Flushing;IILjava/lang/Object;)Lcom/analyticskit/DeliveryStatus$Flushing;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBatchSize ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/analyticskit/DeliveryStatus$Idle : com/analyticskit/DeliveryStatus {
+	public static final field INSTANCE Lcom/analyticskit/DeliveryStatus$Idle;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/analyticskit/Environment : java/lang/Enum {
+	public static final field PRODUCTION Lcom/analyticskit/Environment;
+	public static final field STAGING Lcom/analyticskit/Environment;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/analyticskit/Environment;
+	public static fun values ()[Lcom/analyticskit/Environment;
+}
+
+public final class com/analyticskit/Event {
+	public fun <init> (Ljava/lang/String;Ljava/util/Map;J)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/Map;JILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/Map;
+	public final fun component3 ()J
+	public final fun copy (Ljava/lang/String;Ljava/util/Map;J)Lcom/analyticskit/Event;
+	public static synthetic fun copy$default (Lcom/analyticskit/Event;Ljava/lang/String;Ljava/util/Map;JILjava/lang/Object;)Lcom/analyticskit/Event;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public final fun getProperties ()Ljava/util/Map;
+	public final fun getTimestamp ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/analyticskit/EventInterceptor {
+	public abstract fun intercept (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/analyticskit/LogLevel : java/lang/Enum {
+	public static final field DEBUG Lcom/analyticskit/LogLevel;
+	public static final field ERROR Lcom/analyticskit/LogLevel;
+	public static final field NONE Lcom/analyticskit/LogLevel;
+	public static final field VERBOSE Lcom/analyticskit/LogLevel;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/analyticskit/LogLevel;
+	public static fun values ()[Lcom/analyticskit/LogLevel;
+}
+
