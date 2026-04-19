@@ -1,0 +1,93 @@
+# ============================================================
+# Android / Gradle
+# ============================================================
+*.class
+*.dex
+*.ap_
+
+# Build outputs
+build/
+**/build/
+out/
+
+# Gradle wrapper (keep gradlew scripts, ignore jar & cache)
+.gradle/
+gradle/wrapper/gradle-wrapper.jar
+local.properties
+
+# Keystore / signing
+*.jks
+*.keystore
+release/
+
+# ProGuard
+*.map
+
+# Generated source files
+gen/
+generated/
+
+# AAR / JAR outputs
+*.aar
+*.jar
+
+# ============================================================
+# Android Studio / IntelliJ IDEA
+# ============================================================
+.idea/
+*.iml
+*.iws
+*.ipr
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/libraries
+.idea/caches
+.idea/modules.xml
+.idea/navEditor.xml
+.idea/deploymentTargetDropDown.xml
+# Keep .idea/codeStyles if you want to share code style with the team
+# .idea/codeStyles/
+
+# ============================================================
+# macOS
+# ============================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V8
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ============================================================
+# Local / secrets (never commit these)
+# ============================================================
+local.properties
+*.env
+secrets.properties
+google-services.json
+GoogleService-Info.plist
+
+# ============================================================
+# Test & coverage reports
+# ============================================================
+**/test-results/
+**/jacocoHtml/
+*.exec
+
+# ============================================================
+# Kotlin / compiler caches
+# ============================================================
+**/*.kotlin_module
+.kotlin/
+
+# ============================================================
+# Keep these (override any broad rules above)
+# ============================================================
+!gradle/wrapper/gradle-wrapper.properties
+!gradlew
+!gradlew.bat
+
