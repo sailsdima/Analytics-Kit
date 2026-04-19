@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
     id("com.vanniktech.maven.publish") version "0.31.0"
 }
 
@@ -17,6 +18,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+
     testOptions {
         unitTests.isIncludeAndroidResources = true
     }
@@ -24,9 +29,6 @@ android {
 
 kotlin {
     explicitApi()
-    compilerOptions {
-        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
-    }
 }
 
 dependencies {

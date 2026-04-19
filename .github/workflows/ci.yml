@@ -23,7 +23,7 @@ jobs:
         run: ./gradlew :analyticskit:test --no-daemon
 
       - name: Check binary compatibility
-        run: ./gradlew apiCheck --no-daemon
+        run: ./gradlew :analyticskit:apiCheck --no-daemon
 
       - name: Build release AAR
         run: ./gradlew :analyticskit:bundleReleaseAar --no-daemon
