@@ -12,11 +12,10 @@ internal class RetryPolicy(
     private val maxDelay: Duration = 30.seconds
 ) {
 
-    fun shouldRetry(attempt: Int): Boolean = attempt < maxRetries
+    fun shouldRetry(attempt: Int): Boolean = attempt <= maxRetries
 
     fun delayFor(attempt: Int): Duration {
         val delay = baseDelay * (1 shl attempt.coerceAtMost(5))
         return if (delay > maxDelay) maxDelay else delay
     }
 }
-

@@ -9,9 +9,13 @@ import com.analyticskit.internal.AnalyticsException
 import com.analyticskit.internal.EventDispatcher
 import com.analyticskit.internal.EventQueue
 import com.analyticskit.internal.EventStore
+import com.analyticskit.internal.IEventDispatcher
+import com.analyticskit.internal.IEventStore
+import com.analyticskit.internal.InMemoryEventStore
 import com.analyticskit.internal.RetryPolicy
 import com.analyticskit.internal.toInternal
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -47,12 +51,14 @@ import kotlinx.coroutines.launch
  * ```
  */
 public class AnalyticsKit private constructor(
-    private val context: Context,
-    private val config: AnalyticsConfig
+    private val config: AnalyticsConfig,
+    private val store: IEventStore,
+    private val eventDispatcher: IEventDispatcher,
+    coroutineDispatcher: CoroutineDispatcher = Dispatchers.Default
 ) {
 
     private val scope = CoroutineScope(
-        SupervisorJob() + Dispatchers.Default + CoroutineName("AnalyticsKit")
+        SupervisorJob() + coroutineDispatcher + CoroutineName("AnalyticsKit")
     )
 
     private val retryPolicy = RetryPolicy()
@@ -63,13 +69,12 @@ public class AnalyticsKit private constructor(
     private val queue: EventQueue by lazy(LazyThreadSafetyMode.NONE) {
         EventQueue(
             config = config.batching,
-            store = EventStore(context),
-            dispatcher = EventDispatcher(config),
+            store = store,
+            dispatcher = eventDispatcher,
             logLevel = config.logging
         )
     }
 
-    @Volatile
     @Volatile private var destroyed = false
 
     private val _state = MutableStateFlow(
@@ -261,8 +266,34 @@ public class AnalyticsKit private constructor(
                     "AnalyticsKit is already initialized. Call destroy() first if you need to reinitialize."
                 }
                 return AnalyticsKit(
-                    context = context.applicationContext,
-                    config = config
+                    config = config,
+                    store = EventStore(context.applicationContext),
+                    eventDispatcher = EventDispatcher(config)
+                ).also { instance = it }
+            }
+        }
+
+        /**
+         * Initializes AnalyticsKit with injected dependencies for unit testing.
+         * Use [buildTestInstance] helper from TestHelpers.kt in tests.
+         */
+        @JvmStatic
+        internal fun initializeForTest(
+            config: AnalyticsConfig,
+            dispatcher: IEventDispatcher,
+            store: IEventStore = InMemoryEventStore(),
+            coroutineDispatcher: CoroutineDispatcher = Dispatchers.Default
+        ): AnalyticsKit {
+            synchronized(this) {
+                // Allow re-initialization in tests (previous instance may have been destroyed)
+                instance?.let {
+                    if (!it.destroyed) it.destroy()
+                }
+                return AnalyticsKit(
+                    config = config,
+                    store = store,
+                    eventDispatcher = dispatcher,
+                    coroutineDispatcher = coroutineDispatcher
                 ).also { instance = it }
             }
         }

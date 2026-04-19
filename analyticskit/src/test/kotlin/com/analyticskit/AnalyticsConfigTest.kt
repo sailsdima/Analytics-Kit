@@ -64,4 +64,3 @@ class AnalyticsConfigTest {
         assertEquals(LogLevel.VERBOSE, config.logging)
     }
 }
-

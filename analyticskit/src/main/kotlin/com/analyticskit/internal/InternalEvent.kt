@@ -18,4 +18,3 @@ internal fun Event.toInternal(): InternalEvent = InternalEvent(
     properties = properties,
     timestamp = timestamp
 )
-

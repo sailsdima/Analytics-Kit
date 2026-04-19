@@ -1,37 +1,33 @@
 package com.analyticskit
 
 import com.analyticskit.internal.RetryPolicy
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
+import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 import kotlin.time.Duration.Companion.seconds
 
 class RetryPolicyTest {
 
     @Test
-    fun `should retry within max attempts`() {
-        val policy = RetryPolicy(maxRetries = 3)
-
-        assertTrue(policy.shouldRetry(0))
-        assertTrue(policy.shouldRetry(1))
-        assertTrue(policy.shouldRetry(2))
-        assertFalse(policy.shouldRetry(3))
-    }
-
-    @Test
-    fun `delay increases exponentially`() {
+    fun `backoff delay increases exponentially`() {
         val policy = RetryPolicy(baseDelay = 1.seconds, maxDelay = 30.seconds)
 
-        assertEquals(2.seconds, policy.delayFor(1))
-        assertEquals(4.seconds, policy.delayFor(2))
-        assertEquals(8.seconds, policy.delayFor(3))
+        assertThat(policy.delayFor(attempt = 1)).isEqualTo(2.seconds)
+        assertThat(policy.delayFor(attempt = 2)).isEqualTo(4.seconds)
+        assertThat(policy.delayFor(attempt = 3)).isEqualTo(8.seconds)
     }
 
     @Test
-    fun `delay caps at max`() {
+    fun `delay caps at maximum`() {
         val policy = RetryPolicy(baseDelay = 1.seconds, maxDelay = 5.seconds)
+        assertThat(policy.delayFor(attempt = 10)).isEqualTo(5.seconds)
+    }
 
-        assertEquals(5.seconds, policy.delayFor(5))
+    @Test
+    fun `shouldRetry is false beyond max attempts`() {
+        val policy = RetryPolicy(maxRetries = 3)
+
+        assertThat(policy.shouldRetry(attempt = 1)).isTrue()
+        assertThat(policy.shouldRetry(attempt = 3)).isTrue()
+        assertThat(policy.shouldRetry(attempt = 4)).isFalse()
     }
 }

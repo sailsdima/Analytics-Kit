@@ -9,24 +9,24 @@ import org.json.JSONObject
  * Persists events to SharedPreferences for offline support.
  * In a production SDK, you'd use Room or a file-based store for better performance.
  */
-internal class EventStore(context: Context) {
+internal class EventStore(context: Context) : IEventStore {
 
     private val prefs: SharedPreferences = context.getSharedPreferences(
         PREFS_NAME, Context.MODE_PRIVATE
     )
 
     @Synchronized
-    fun persist(event: InternalEvent) {
+    override fun persist(event: InternalEvent) {
         val events = loadAll().toMutableList()
         events.add(event)
         save(events)
     }
 
     @Synchronized
-    fun count(): Int = loadAll().size
+    override fun count(): Int = loadAll().size
 
     @Synchronized
-    fun drain(count: Int): List<InternalEvent> {
+    override fun drain(count: Int): List<InternalEvent> {
         val events = loadAll().toMutableList()
         val batch = events.take(count)
         val remaining = events.drop(count)
@@ -35,14 +35,14 @@ internal class EventStore(context: Context) {
     }
 
     @Synchronized
-    fun drainAll(): List<InternalEvent> {
+    override fun drainAll(): List<InternalEvent> {
         val events = loadAll()
         save(emptyList())
         return events
     }
 
     @Synchronized
-    fun clear() {
+    override fun clear() {
         prefs.edit().remove(KEY_EVENTS).apply()
     }
 

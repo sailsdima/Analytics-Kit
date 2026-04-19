@@ -37,4 +37,3 @@ class EventTest {
         Event(name = "   ")
     }
 }
-

@@ -8,8 +8,8 @@ import com.analyticskit.LogLevel
  */
 internal class EventQueue(
     private val config: BatchConfig,
-    private val store: EventStore,
-    private val dispatcher: EventDispatcher,
+    private val store: IEventStore,
+    private val dispatcher: IEventDispatcher,
     private val logLevel: LogLevel = LogLevel.NONE
 ) {
 
@@ -51,4 +51,3 @@ internal class EventQueue(
         }
     }
 }
-

@@ -1,15 +1,24 @@
 # AnalyticsKit SDK ProGuard Rules
-# Keep all public API classes
--keep class com.analyticskit.AnalyticsKit { *; }
--keep class com.analyticskit.AnalyticsConfig { *; }
--keep class com.analyticskit.AnalyticsConfig$Builder { *; }
--keep class com.analyticskit.BatchConfig { *; }
--keep class com.analyticskit.Event { *; }
--keep class com.analyticskit.AnalyticsState { *; }
+
+# Public entry point and configuration
+-keep public class com.analyticskit.AnalyticsKit { public *; }
+-keep public class com.analyticskit.AnalyticsConfig { *; }
+-keep public class com.analyticskit.AnalyticsConfig$Builder { *; }
+-keep public class com.analyticskit.BatchConfig { *; }
+-keep public class com.analyticskit.Event { *; }
+-keep public class com.analyticskit.AnalyticsState { *; }
+
+# Sealed interface and enum classes — R8 removes unused variants by default
 -keep class com.analyticskit.DeliveryStatus { *; }
 -keep class com.analyticskit.DeliveryStatus$* { *; }
 -keep class com.analyticskit.AnalyticsError { *; }
 -keep class com.analyticskit.Environment { *; }
 -keep class com.analyticskit.LogLevel { *; }
--keep class com.analyticskit.EventInterceptor { *; }
 
+# EventInterceptor — consumers implement this as a lambda or anonymous class
+-keep interface com.analyticskit.EventInterceptor { *; }
+
+# Kotlin data class synthetic methods: copy(), componentN(), equals(), hashCode()
+-keepclassmembers class com.analyticskit.** {
+    synthetic <methods>;
+}

@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Handles network delivery of event batches to the backend.
  */
-internal class EventDispatcher(private val config: AnalyticsConfig) {
+internal class EventDispatcher(private val config: AnalyticsConfig) : IEventDispatcher {
 
     private val client = OkHttpClient.Builder()
         .connectTimeout(15, TimeUnit.SECONDS)
@@ -37,7 +37,7 @@ internal class EventDispatcher(private val config: AnalyticsConfig) {
      *
      * @throws AnalyticsException if the request fails
      */
-    suspend fun dispatch(events: List<InternalEvent>) {
+    override suspend fun dispatch(events: List<InternalEvent>) {
         if (events.isEmpty()) return
 
         val payload = buildPayload(events)
