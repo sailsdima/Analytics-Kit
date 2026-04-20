@@ -42,7 +42,9 @@ android {
 
 
 dependencies {
-    implementation(project(":analyticskit"))
+//    implementation(project(":analyticskit"))
+    implementation("io.github.sailsdima:analyticskit:1.0.0")
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
