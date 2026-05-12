@@ -1,3 +1,5 @@
+[![Android Weekly](https://androidweekly.net/issues/issue-724/badge)](https://androidweekly.net/issues/issue-724)
+
 # AnalyticsKit
 
 ## Architecture
