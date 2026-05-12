@@ -84,10 +84,15 @@ GoogleService-Info.plist
 .kotlin/
 
 # ============================================================
+# React Native / Node.js
+# ============================================================
+node_modules/
+react-native/lib/
+
+# ============================================================
 # Keep these (override any broad rules above)
 # ============================================================
 !gradle/wrapper/gradle-wrapper.properties
 !gradle/wrapper/gradle-wrapper.jar
 !gradlew
 !gradlew.bat
-

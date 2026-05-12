@@ -1,0 +1,40 @@
+{
+  "name": "@analyticskit/react-native",
+  "version": "1.0.0",
+  "description": "React Native bridge for AnalyticsKit — a modern, lightweight analytics SDK for Android",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/"
+  },
+  "keywords": [
+    "react-native",
+    "analytics",
+    "android",
+    "sdk"
+  ],
+  "author": "Dmytro Petrenko",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sailsdima/Analytics-Kit"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-native": ">=0.70.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  },
+  "files": [
+    "lib/",
+    "android/",
+    "src/",
+    "react-native-analyticskit.podspec"
+  ]
+}
+
+
+
